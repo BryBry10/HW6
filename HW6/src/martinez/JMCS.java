@@ -73,12 +73,34 @@ public class JMCS {
 		return MCSString;
 	}
 
-	/*
-	private boolean isCode(String str) {
-		// IMPLEMENT TO EXAMINE IF CODELINE IS A VALID CODE INSTRUCTION 
 
+	private boolean isCode(String str) {
+	    // Trim whitespace from the string
+	    str = str.trim();
+
+	    // Check if the line is empty or a comment
+	    if (str.isEmpty() || str.startsWith("//")) {
+	        return false; // Ignore empty lines and single-line comments
+	    }
+
+	    // Define a simple set of keywords that might indicate valid code
+	    String[] keywords = {
+	        "public", "private", "protected", "class", "void", "if", "else",
+	        "for", "while", "return", "static", "int", "String", "double",
+	        "boolean", "try", "catch", "finally", "throw", "throws", "new"
+	    };
+
+	    // Check if the line contains any keywords
+	    for (String keyword : keywords) {
+	        if (str.contains(keyword)) {
+	            return true; // If it contains a keyword, consider it valid code
+	        }
+	    }
+
+	    // Additional checks can be added here as needed
+	    return false; // If no conditions matched, consider it invalid
 	}
-	*/
+
 
 
 
